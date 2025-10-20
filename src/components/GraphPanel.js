@@ -142,7 +142,7 @@ const GraphPanel = ({ graphData, solution }) => {
     } else {
       setCurrentGraphData(graphData);
     }
-  }, [selectedFunction, graphData, graphType]);
+  }, [selectedFunction, graphData, graphType, generateSampleGraph]);
 
   const displayData = graphType === '3D' && !graphData && !currentGraphData ? mock3DData : currentGraphData;
 

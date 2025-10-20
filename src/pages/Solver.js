@@ -12,7 +12,7 @@ const Solver = () => {
   const [error, setError] = useState(null);
   const [chatHistory, setChatHistory] = useState([]);
   const [activeTab, setActiveTab] = useState('solver');
-  const [sessionId, setSessionId] = useState(() => generateSessionId());
+  const [sessionId] = useState(() => generateSessionId());
   const [currentProblemId, setCurrentProblemId] = useState(null);
 
   const handleSolve = async (problem, imageFile, problemType = 'other') => {

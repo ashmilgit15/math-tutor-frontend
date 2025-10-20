@@ -80,31 +80,31 @@ const ExportPanel = ({ solution, graphData, problemId, sessionId }) => {
     }
   };
 
-  const generatePDFContent = (solution, graphData) => {
-    // Mock PDF content - in real implementation, use jsPDF or similar
-    return `Math Tutor Solution Report
-Generated on: ${new Date().toLocaleString()}
+  // const generatePDFContent = (solution, graphData) => {
+  //   // Mock PDF content - in real implementation, use jsPDF or similar
+  //   return `Math Tutor Solution Report
+  // Generated on: ${new Date().toLocaleString()}
 
-Problem: ${solution.problem}
-Type: ${solution.problemType}
-Difficulty: ${solution.difficulty}
+  // Problem: ${solution.problem}
+  // Type: ${solution.problemType}
+  // Difficulty: ${solution.difficulty}
 
-Solution Steps:
-${solution.steps.map((step, index) => 
-  `Step ${step.step}: ${step.description}
-  ${step.equation ? `Equation: ${step.equation}` : ''}
-  ${step.explanation}
+  // Solution Steps:
+  // ${solution.steps.map((step, index) => 
+  //   `Step ${step.step}: ${step.description}
+  //   ${step.equation ? `Equation: ${step.equation}` : ''}
+  //   ${step.explanation}
 
-`).join('')}
+  // `).join('')}
 
-Final Answer: ${solution.finalAnswer}
+  // Final Answer: ${solution.finalAnswer}
 
-${graphData ? 'Graph included in this solution.' : ''}
+  // ${graphData ? 'Graph included in this solution.' : ''}
 
----
-Math Tutor - AI-Powered Math Learning Platform
-`;
-  };
+  // ---
+  // Math Tutor - AI-Powered Math Learning Platform
+  // `;
+  // };
 
   const generateTextContent = (solution) => {
     return `Math Tutor Solution
@@ -128,35 +128,35 @@ Generated on: ${new Date().toLocaleString()}
 `;
   };
 
-  const generateLaTeXContent = (solution) => {
-    return `\\documentclass{article}
-\\usepackage{amsmath}
-\\usepackage{amsfonts}
-\\usepackage{amssymb}
+  // const generateLaTeXContent = (solution) => {
+  //   return `\\documentclass{article}
+  // \\usepackage{amsmath}
+  // \\usepackage{amsfonts}
+  // \\usepackage{amssymb}
 
-\\title{Math Solution}
-\\author{Math Tutor AI}
-\\date{${new Date().toLocaleDateString()}}
+  // \\title{Math Solution}
+  // \\author{Math Tutor AI}
+  // \\date{${new Date().toLocaleDateString()}}
 
-\\begin{document}
-\\maketitle
+  // \\begin{document}
+  // \\maketitle
 
-\\section{Problem}
-${solution.problem}
+  // \\section{Problem}
+  // ${solution.problem}
 
-\\section{Solution}
-\\begin{align}
-${solution.steps.map((step, index) => 
-  step.equation ? `& ${step.equation.replace(/=/g, '&=')} \\\\` : ''
-).join('\n')}
-\\end{align}
+  // \\section{Solution}
+  // \\begin{align}
+  // ${solution.steps.map((step, index) => 
+  //   step.equation ? `& ${step.equation.replace(/=/g, '&=')} \\\\` : ''
+  // ).join('\n')}
+  // \\end{align}
 
-\\section{Answer}
-${solution.finalAnswer}
+  // \\section{Answer}
+  // ${solution.finalAnswer}
 
-\\end{document}
-`;
-  };
+  // \\end{document}
+  // `;
+  // };
 
   const handleCopyToClipboard = async () => {
     if (!solution) return;
