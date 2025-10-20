@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Plot from 'react-plotly.js';
 import { generateGraph } from '../utils/api';
 
@@ -45,27 +45,27 @@ const GraphPanel = ({ graphData, solution }) => {
     { name: 'Rational: y = 1/x', equation: '1/x', color: '#8c564b' }
   ];
 
-  const generateSampleGraph = async (equation) => {
-    setIsGeneratingGraph(true);
-    setGraphError(null);
-    
-    try {
-      const result = await generateGraph(equation, graphType);
-      if (result.success) {
-        return result.graph_data;
-      } else {
-        throw new Error(result.message || 'Failed to generate graph');
-      }
-    } catch (error) {
-      console.error('Error generating graph:', error);
-      setGraphError(error.message);
-      
-      // Fallback to local generation for demo
-      return generateLocalGraph(equation);
-    } finally {
-      setIsGeneratingGraph(false);
+  const generateSampleGraph = useCallback(async (equation) => {
+  setIsGeneratingGraph(true);
+  setGraphError(null);
+  
+  try {
+    const result = await generateGraph(equation, graphType);
+    if (result.success) {
+      return result.graph_data;
+    } else {
+      throw new Error(result.message || 'Failed to generate graph');
     }
-  };
+  } catch (error) {
+    console.error('Error generating graph:', error);
+    setGraphError(error.message);
+    
+    // Fallback to local generation for demo
+    return generateLocalGraph(equation);
+  } finally {
+    setIsGeneratingGraph(false);
+  }
+}, [graphType]);
 
   const generateLocalGraph = (equation) => {
     const x = [];
